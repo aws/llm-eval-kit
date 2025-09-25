@@ -1,0 +1,25 @@
+[build-system]
+requires = [
+  "build",
+  "setuptools",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nova-custom-evaluation-sdk"
+license = "Apache-2.0"
+version = "1.0"
+readme = "README.md"
+dependencies = [
+  "pydantic"
+  # Put your dependencies here!
+]
+
+[project.optional-dependencies]
+dev = [
+  "build",
+  "setuptools",
+  "twine",
+  "wheel",
+]
