@@ -1,7 +1,7 @@
 # Nova Custom Evaluation SDK
 
 A Python SDK for creating custom evaluation metrics for AWS Nova on-demand model evaluation on Sagemaker Training Job with built-in Pydantic validation.
-
+For the official integration with AWS Sagemaker training job, please view in the [Official AWS Sagemaker Documentation](https://docs.aws.amazon.com/sagemaker/latest/dg/nova-model-evaluation.html).
 ## Installation
 
 ```
@@ -29,17 +29,17 @@ See `example/run_example.py` for a complete working example to run locally.
 ### Run in AWS Lambda
 You need to create a lambda (follow this [guide](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)) and upload `nova-custom-eval-sdk` as a lambda layer in order to use it.
 
-In the github release, you should be able to find a pre-built nov-custom-eval-layer.zip file.
+In the github release, you should be able to find a pre-built nova-custom-eval-layer.zip file.
 
 Use below command to upload custom lambda layer.
 
 ```
 aws lambda publish-layer-version \
-    --layer-name nova-custom-sdk-layer \
-    --zip-file fileb://nova-layer.zip \
+    --layer-name nova-custom-eval-layer \
+    --zip-file fileb://nova-custom-eval-layer.zip \
     --compatible-runtimes python3.12 python3.11 python3.10 python3.9
 ```
-You need to add this layer as custom layer along with an AWS layer: `AWSLambdaPowertoolsPythonV3-python312-arm64` (because of pydantic depencency) to your lambda.
+You need to add this layer as custom layer along with the required AWS layer: `AWSLambdaPowertoolsPythonV3-python312-arm64` (because of pydantic depencency) to your lambda.
 
 Then update your lambda code with:
 
@@ -67,7 +67,7 @@ def postprocessor(event: list, context) -> dict:
     gold = data.get('gold', '')
     
     metrics = []
-    accuracy = 1.0 if inference_output.lower() == gold.lower() else 0.0
+    inverted_accuracy = 0 if inference_output.lower() == gold.lower() else 1.0
     metrics.append({
         "metric": "inverted_accuracy_custom",
         "value": accuracy
@@ -98,7 +98,7 @@ The SDK automatically validates:
   "data": {
     "prompt": "what can you do?",
     "gold": "Hello! How can I help you today?",
-    "system": "You are a helpful assistant" // optional
+    "system": "You are a helpful assistant" 
   }
 }
 ```
