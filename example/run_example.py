@@ -72,10 +72,10 @@ def postprocessor(event: dict, context) -> dict:
     gold = data.get('gold', '')
     
     metrics = []
-    accuracy = 1.0 if inference_output.lower() == gold.lower() else 0.0
+    inverted_accuracy = 0 if inference_output.lower() == gold.lower() else 1.0
     metrics.append({
         "metric": "inverted_accuracy_custom",
-        "value": accuracy
+        "value": inverted_accuracy
     })
     
     # Add more metrics here
