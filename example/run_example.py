@@ -56,8 +56,8 @@ def postprocessor(event: dict, context) -> dict:
         dict: Evaluation results with:
             - statusCode (int): HTTP status code (200)
             - body (list): List of metric dictionaries, each containing:
-                - metric (str): Metric name ("inverted_accuracy_custom")
-                - value (float): Metric value (1.0 for match, 0.0 for mismatch)
+                - metric (str): Metric name
+                - value (float): Metric value
                 
     Example:
         >>> event = {"data": {"inference_output": "Hello!", "gold": "Hello!"}}
