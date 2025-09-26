@@ -60,7 +60,7 @@ def preprocessor(event: dict, context) -> dict:
     }
 
 @postprocess
-def postprocessor(event: list, context) -> dict:
+def postprocessor(event: dict, context) -> dict:
     # data is already validated and extracted from event
     data = event.get('data', [])
     inference_output = data.get('inference_output', '')
