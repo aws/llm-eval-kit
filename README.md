@@ -29,7 +29,7 @@ See `example/run_example.py` for a complete working example to run locally.
 ### Run in AWS Lambda
 You need to create a lambda (follow this [guide](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)) and upload `nova-custom-eval-sdk` as a lambda layer in order to use it.
 
-In the github release, you should be able to find a pre-built nova-custom-eval-layer.zip file.
+In the [github release](https://github.com/aws/nova-custom-eval-sdk/releases), you should be able to find a pre-built nova-custom-eval-layer.zip file.
 
 Use below command to upload custom lambda layer.
 
