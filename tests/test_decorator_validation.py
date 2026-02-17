@@ -1,5 +1,5 @@
 import unittest
-from nova_custom_evaluation_sdk.processors.decorators import preprocess, postprocess
+from llm_eval_kit.processors.decorators import preprocess, postprocess
 
 
 class TestDecoratorValidation(unittest.TestCase):

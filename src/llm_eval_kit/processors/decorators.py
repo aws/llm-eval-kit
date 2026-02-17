@@ -1,6 +1,6 @@
 import inspect
-from nova_custom_evaluation_sdk.processors.pre_processor import PreProcessor
-from nova_custom_evaluation_sdk.processors.post_processor import PostProcessor
+from llm_eval_kit.processors.pre_processor import PreProcessor
+from llm_eval_kit.processors.post_processor import PostProcessor
 
 # Expected number of parameters for processor functions (data, context)
 EXPECTED_PARAM_COUNT = 2

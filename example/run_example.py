@@ -1,5 +1,5 @@
-from nova_custom_evaluation_sdk.processors.decorators import preprocess, postprocess
-from nova_custom_evaluation_sdk.lambda_handler import build_lambda_handler
+from llm_eval_kit.processors.decorators import preprocess, postprocess
+from llm_eval_kit.lambda_handler import build_lambda_handler
 import json
 
 @preprocess

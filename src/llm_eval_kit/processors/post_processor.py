@@ -1,8 +1,8 @@
 from functools import wraps
 from typing import Callable, Dict, Any
-from nova_custom_evaluation_sdk.processors.processor import Processor
-from nova_custom_evaluation_sdk.processors.exceptions import PostprocessError
-from nova_custom_evaluation_sdk.model.models import PostprocessingPayload, PostprocessingResponse
+from llm_eval_kit.processors.processor import Processor
+from llm_eval_kit.processors.exceptions import PostprocessError
+from llm_eval_kit.model.models import PostprocessingPayload, PostprocessingResponse
 from pydantic import ValidationError
 
 class PostProcessor(Processor):
