@@ -1,7 +1,7 @@
 import unittest
-from nova_custom_evaluation_sdk.processors.decorators import preprocess
-from nova_custom_evaluation_sdk.processors.pre_processor import PreProcessor
-from nova_custom_evaluation_sdk.processors.exceptions import PreprocessError
+from llm_eval_kit.processors.decorators import preprocess
+from llm_eval_kit.processors.pre_processor import PreProcessor
+from llm_eval_kit.processors.exceptions import PreprocessError
 
 
 class TestPreprocessorDecorator(unittest.TestCase):

@@ -7,7 +7,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nova-custom-evaluation-sdk"
+name = "llm-eval-kit"
 license = "Apache-2.0"
 version = "1.0"
 readme = "README.md"

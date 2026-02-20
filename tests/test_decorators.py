@@ -1,8 +1,8 @@
 import unittest
-from nova_custom_evaluation_sdk.processors.decorators import preprocess
-from nova_custom_evaluation_sdk.processors.pre_processor import PreProcessor
-from nova_custom_evaluation_sdk.processors.post_processor import PostProcessor
-from nova_custom_evaluation_sdk.processors.exceptions import PreprocessError, PostprocessError
+from llm_eval_kit.processors.decorators import preprocess
+from llm_eval_kit.processors.pre_processor import PreProcessor
+from llm_eval_kit.processors.post_processor import PostProcessor
+from llm_eval_kit.processors.exceptions import PreprocessError, PostprocessError
 
 
 class TestProcessorDecorators(unittest.TestCase):

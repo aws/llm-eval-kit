@@ -1,12 +1,12 @@
-# Nova Custom Evaluation SDK
+# LLM Eval Kit
 
-A Python SDK for creating custom evaluation metrics for AWS Nova on-demand model evaluation on Sagemaker Training Job with built-in Pydantic validation.
+A Python SDK for creating custom evaluation metrics for LLM model evaluation on Sagemaker Training Job with built-in Pydantic validation.
 For the official integration with AWS Sagemaker training job, please view in the [Official AWS Sagemaker Documentation](https://docs.aws.amazon.com/sagemaker/latest/dg/nova-model-evaluation.html).
 ## Installation
 
 ```
-git clone https://github.com/aws/nova-custom-eval-sdk.git
-cd nova-custom-eval-sdk
+git clone https://github.com/aws/llm-eval-kit.git
+cd llm-eval-kit
 pip install .
 ```
 
@@ -27,16 +27,16 @@ The SDK provides:
 See `example/run_example.py` for a complete working example to run locally.
 
 ### Run in AWS Lambda
-You need to create a lambda (follow this [guide](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)) and upload `nova-custom-eval-sdk` as a lambda layer in order to use it.
+You need to create a lambda (follow this [guide](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)) and upload `llm-eval-kit` as a lambda layer in order to use it.
 
-In the [github release](https://github.com/aws/nova-custom-eval-sdk/releases), you should be able to find a pre-built nova-custom-eval-layer.zip file.
+In the [github release](https://github.com/aws/llm-eval-kit/releases), you should be able to find a pre-built llm-eval-kit-layer.zip file.
 
 Use below command to upload custom lambda layer.
 
 ```
 aws lambda publish-layer-version \
-    --layer-name nova-custom-eval-layer \
-    --zip-file fileb://nova-custom-eval-layer.zip \
+    --layer-name llm-eval-kit-layer \
+    --zip-file fileb://llm-eval-kit-layer.zip \
     --compatible-runtimes python3.12 python3.11 python3.10 python3.9
 ```
 You need to add this layer as custom layer along with the required AWS layer: `AWSLambdaPowertoolsPythonV3-python312-arm64` (because of pydantic depencency) to your lambda.
@@ -44,8 +44,8 @@ You need to add this layer as custom layer along with the required AWS layer: `A
 Then update your lambda code with:
 
 ```python
-from nova_custom_evaluation_sdk.processors.decorators import preprocess, postprocess
-from nova_custom_evaluation_sdk.lambda_handler import build_lambda_handler
+from llm_eval_kit.processors.decorators import preprocess, postprocess
+from llm_eval_kit.lambda_handler import build_lambda_handler
 
 @preprocess
 def preprocessor(event: dict, context) -> dict:
@@ -65,16 +65,16 @@ def postprocessor(event: dict, context) -> dict:
     data = event.get('data', [])
     inference_output = data.get('inference_output', '')
     gold = data.get('gold', '')
-    
+
     metrics = []
     inverted_accuracy = 0 if inference_output.lower() == gold.lower() else 1.0
     metrics.append({
         "metric": "inverted_accuracy_custom",
         "value": inverted_accuracy
     })
-    
+
     # Add more metrics here
-    
+
     return {
         "statusCode": 200,
         "body": metrics
@@ -98,7 +98,7 @@ The SDK automatically validates:
   "data": {
     "prompt": "what can you do?",
     "gold": "Hello! How can I help you today?",
-    "system": "You are a helpful assistant" 
+    "system": "You are a helpful assistant"
   }
 }
 ```
@@ -134,7 +134,7 @@ python example/run_example.py
 pip install -e .
 
 # Run tests with coverage
-python -m pytest tests/ --cov=nova_custom_evaluation_sdk
+python -m pytest tests/ --cov=llm_eval_kit
 ```
 
 ## Contributing
@@ -144,4 +144,3 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This project is licensed under the Apache-2.0 License.
-

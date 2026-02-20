@@ -1,7 +1,7 @@
 from typing import Dict, Any, Optional, Union, Callable
-from nova_custom_evaluation_sdk.processors.pre_processor import PreProcessor
-from nova_custom_evaluation_sdk.processors.post_processor import PostProcessor
-from nova_custom_evaluation_sdk.model.models import ProcessType
+from llm_eval_kit.processors.pre_processor import PreProcessor
+from llm_eval_kit.processors.post_processor import PostProcessor
+from llm_eval_kit.model.models import ProcessType
 
 def build_lambda_handler(
     preprocessor: Optional[PreProcessor] = None,
