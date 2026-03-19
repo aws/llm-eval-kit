@@ -1,0 +1,19 @@
+# llm-eval-kit deployment configuration
+# Copy to llm_eval_kit.yaml and fill in your values.
+# The CLI auto-discovers this file in the current or parent directories.
+
+aws:
+  region: us-east-1
+  # account_id: "123456789012"  # optional, auto-detected from creds
+  # profile: my-profile         # AWS CLI profile name (optional)
+
+  lambda:
+    function_name: llm-eval-reward-function
+    runtime: python3.12
+    handler: handler.lambda_handler
+    timeout: 60
+    memory_size: 256
+    role_arn: arn:aws:iam::123456789012:role/your-lambda-execution-role
+    # layers: []                 # optional Lambda layers
+    # environment:               # extra env vars passed to the Lambda
+    #   MY_VAR: my_value

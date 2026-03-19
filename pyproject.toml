@@ -9,11 +9,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "llm-eval-kit"
 license = "Apache-2.0"
-version = "1.0"
+version = "1.1.0"
 readme = "README.md"
+requires-python = ">=3.10"
 dependencies = [
-  "pydantic"
-  # Put your dependencies here!
+  "pydantic>=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -22,4 +22,17 @@ dev = [
   "setuptools",
   "twine",
   "wheel",
+  "pytest>=7.0.0",
+  "mypy",
 ]
+datasets = [
+  "datasets>=2.0.0",
+  "huggingface-hub>=0.20.0",
+]
+deploy = [
+  "boto3>=1.28.0",
+  "pyyaml>=6.0",
+]
+
+[project.scripts]
+llm-eval-kit = "llm_eval_kit.cli.main:main"
