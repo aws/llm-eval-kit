@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# mypy
+.mypy_cache/
+
+# Test / pytest
+.pytest_cache/
+.coverage
+htmlcov/
+test_data.jsonl
+test_tool_call.jsonl
+results.jsonl
+
+# Config secrets (never commit credentials)
+llm_eval_kit.yaml
+.env
+
+# Blog drafts
+blog/
+
+# Lambda deployment artifacts
+deploy_package/
+*.zip
